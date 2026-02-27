@@ -64,7 +64,7 @@ docker run -p 8000:8000 devboost-mcp server
 ```bash
 docker run --rm devboost-mcp smoke
 ```
-Также вы можете вручную проверить эндпоинт, если сервер запущен через команду `serve`:
+Также вы можете вручную проверить эндпоинт, если сервер запущен через команду `server`:
 ```bash
 curl http://localhost:8000/health
 ```

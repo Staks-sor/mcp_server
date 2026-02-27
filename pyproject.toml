@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "devboost-mcp"
+version = "0.1.0"
+description = "MCP Server for Developer Boost (Local Env & DB Profiler)"
+authors = ["Antigravity <ai@local>"]
+readme = "README.md"
+packages = [{include = "devboost", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+mcp = "^1.2.0"
+fastmcp = ">=3.0.0"
+pydantic-settings = "^2.0.0"
+asyncpg = "^0.29.0"
+psutil = "^6.0.0"
+
+[tool.poetry.scripts]
+devboost = "devboost.server:run"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

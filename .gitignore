@@ -1,0 +1,24 @@
+# Проектные файлы
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Среда разработки
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Зависимости
+__pypackages__/
+build/
+dist/
+*.egg-info/
+
+# Системные файлы Mac
+.DS_Store
+
+# Переменные окружения
+.env

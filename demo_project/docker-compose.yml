@@ -3,16 +3,18 @@ version: '3.8'
 services:
   # Наш MCP Сервер
   devboost:
-    build: .
+    build:
+      context: ..
     environment:
       # Подключаемся к тестовой БД
       - DATABASE_URL=postgresql://testuser:testpass@db:5432/testdb
+    ports:
+      - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
-    # Важно: MCP сервер общается через stdin/stdout, так что порты не публикуем
-    # Для отладки можно запустить с tty
-    tty: true
+    # Команда запуска из требований хакатона
+    command: [ "serve" ]
 
   # Тестовая БД для демонстрации работы инструмента db_profiler
   db:

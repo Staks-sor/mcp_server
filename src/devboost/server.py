@@ -10,6 +10,12 @@ mcp = FastMCP("DevBoost", dependencies=["pydantic", "psutil", "asyncpg", "pydant
 import devboost.tools.env_doctor
 import devboost.tools.db_profiler
 
+# Добавляем health check для запуска в Docker (требование хакатона)
+@mcp.custom_route("/health", ["GET"])
+async def health(request):
+    from starlette.responses import JSONResponse
+    return JSONResponse({"status": "ok"})
+
 def run():
     """Точка входа для запуска сервера через CLI."""
     print(f"[{mcp.name}] Starting DevBoost MCP Server...")

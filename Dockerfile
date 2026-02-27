@@ -6,9 +6,11 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     lsof \
     net-tools \
+    curl \
     python3-dev \
     gcc \
     && rm -rf /var/lib/apt/lists/*
+
 
 # Копируем проект
 COPY . /app/
@@ -17,10 +19,17 @@ COPY . /app/
 RUN pip install --no-cache-dir build && \
     pip install -e .
 
-# Создаем не-root пользователя (чтобы kill_port_hog был более безопасен, хотя внутри докера он один)
+# Слушаем порт 8000
+EXPOSE 8000
+
+# Создаем скрипт запуска и выдаем права
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Создаем не-root пользователя
 RUN useradd -m devboostuser
+RUN chown -R devboostuser:devboostgroup /app || chown -R devboostuser /app
 USER devboostuser
 
-# Сервер FastMCP работает через stdio, поэтому открывать порты не нужно
-# При запуске из Claude Desktop / Inspector он будет общаться через stdin/stdout
-ENTRYPOINT ["devboost"]
+ENTRYPOINT ["/app/entrypoint.sh"]
+CMD ["serve"]

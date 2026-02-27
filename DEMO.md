@@ -11,10 +11,10 @@
    docker-compose up -d --build
    ```
    Дождитесь запуска (статус контейнера `db` должен быть `healthy`).
-2. Сервер готов к работе, URL MCP: `http://localhost:8000/mcp`
+2. Сервер готов к работе, URL MCP: `http://localhost:8080/sse`
 3. Открыт официальный MCP Inspector в браузере. Вы можете запустить его командой:
    ```bash
-   npx -y @modelcontextprotocol/inspector SSE http://localhost:8000/mcp
+   npx -y @modelcontextprotocol/inspector --transport sse --server-url http://localhost:8080/sse
    ```
 
 ## Шаги проверки
@@ -39,7 +39,7 @@
 *   **Ошибка соединения базы данных (Connection Refused внутри агента):**
     Проверьте, что вы находитесь именно в папке `demo_project/` и выполнили `docker-compose up -d`. Убедитесь, что контейнер базы данных находится в состоянии `healthy` (посмотреть можно командой `docker ps`).
 *   **Inspector не подключается к серверу (Окно не открывается или висит Connecting):**
-    Убедитесь, что вы выбрали тип подключения **SSE** и вставили точный URL: `http://localhost:8000/mcp`. Для быстрой проверки работоспособности самого контейнера выполните: `curl http://localhost:8000/health`. Контейнер должен отдать `{"status":"ok"}`.
+    Убедитесь, что вы вставили точный URL: `http://localhost:8080/sse`. Для быстрой проверки работоспособности самого контейнера выполните: `curl http://localhost:8080/health`. Контейнер должен отдать `{"status":"ok"}`.
 *   **Сценарий не проходит (команда npx not found):**
     Убедитесь, что у вас установлен `Node.js` (npm/npx), так как графический UI Inspector запускается через экосистему Node.
 

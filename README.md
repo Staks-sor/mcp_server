@@ -56,7 +56,7 @@ docker build -t devboost-mcp .
 ### Как запустить serve
 Для запуска сервера в режиме SSE (для удаленных клиентов) на порту 8000:
 ```bash
-docker run -p 8000:8000 devboost-mcp server
+docker run -p 8000:8000 devboost-mcp serve
 ```
 
 ### Как проверить /health

@@ -33,7 +33,21 @@ git clone <ССЫЛКА_НА_ВАШ_РЕПОЗИТОРИЙ> mcp_server
 cd mcp_server
 ```
 
-### 3. Как собрать образ
+### 3. Установка зависимостей (локально, без Docker)
+Если вы планируете запускать сервер локально для разработки (или подключать к Claude Desktop):
+```bash
+# Создание виртуального окружения
+python3 -m venv .venv
+
+# Активация окружения (Mac/Linux)
+source .venv/bin/activate
+# Windows: .venv\Scripts\activate
+
+# Установка зависимостей
+pip install -r requirements.txt
+```
+
+### 4. Как собрать образ (рекомендуется)
 Из корневой папки выполните сборку Docker-образа сервера:
 ```bash
 docker build -t devboost-mcp .
